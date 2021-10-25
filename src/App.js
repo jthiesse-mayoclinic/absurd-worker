@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 
+import './workers/absurd-mainthread';
+
 function App() {
   return (
     <div className="App">
