@@ -10,7 +10,18 @@ async function init() {
   SQL.FS.mkdir('/sql');
   SQL.FS.mount(sqlFS, {}, '/sql');
 
-  let db = new SQL.Database('/sql/db.sqlite', { filename: true });
+  console.log('init before database');
+  
+  let db = null;
+
+  try {
+    db = new SQL.Database('/sql/db.sqlite', { filename: true });
+  } catch (e) {
+    console.error('Error while creating the database', e);
+  }
+
+  console.log('init after database');
+  
   db.exec(`
     PRAGMA page_size=8192;
     PRAGMA journal_mode=MEMORY;
